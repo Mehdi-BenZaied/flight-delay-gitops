@@ -1,12 +1,12 @@
 backend:
   replicaCount: 1
   image:
-    tag: main-ff1caeae-62
+    tag: main-ff1caeae-63
     repository: mehdibenzaied/flight-delay-backend
 frontend:
   replicaCount: 1
   image:
-    tag: main-ff1caeae-62
+    tag: main-ff1caeae-63
     repository: mehdibenzaied/flight-delay-frontend
   service:
     type: NodePort
@@ -18,6 +18,6 @@ analytics:
     nodePort: 30085
   image:
     repository: mehdibenzaied/flight-delay-backend
-    tag: main-ff1caeae-62
+    tag: main-ff1caeae-63
 ingress:
   enabled: false
