@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: flight-delay-dev
+  namespace: argocd
+
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: flight-delay-helm
+
+  sources:
+    # Source 1 : chart Helm dans le repository applicatif.
+    - repoURL: https://github.com/<GITHUB_USER>/FlightDelay.git
+      targetRevision: main
+      path: deploy/helm/flight-delay
+
+      helm:
+        # Garde les mêmes noms que ta release Helm actuelle.
+        releaseName: flight-delay-dev
+
+        # Le fichier vient du repository GitOps ci-dessous.
+        valueFiles:
+          - $values/environments/dev/values.yaml
+
+    # Source 2 : valeurs propres à l'environnement dev.
+    - repoURL: https://github.com/<GITHUB_USER>/flight-delay-gitops.git
+      targetRevision: main
+      ref: values
+
+  # Pour le premier test, la synchronisation reste manuelle.
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
