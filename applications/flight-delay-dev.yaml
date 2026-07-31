@@ -14,7 +14,7 @@ spec:
 
   sources:
     # Source 1 : chart Helm dans le repository applicatif.
-    - repoURL: https://github.com/<GITHUB_USER>/FlightDelay.git
+    - repoURL: https://github.com/Mehdi-BenZaied/FlightDelay.git
       targetRevision: main
       path: deploy/helm/flight-delay
 
@@ -27,7 +27,7 @@ spec:
           - $values/environments/dev/values.yaml
 
     # Source 2 : valeurs propres à l'environnement dev.
-    - repoURL: https://github.com/<GITHUB_USER>/flight-delay-gitops.git
+    - repoURL: https://github.com/Mehdi-BenZaied/flight-delay-gitops.git
       targetRevision: main
       ref: values
 
